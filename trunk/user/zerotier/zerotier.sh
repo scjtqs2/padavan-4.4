@@ -1,6 +1,7 @@
 #!/bin/sh
 #20200426 chongshengB
 #20210410 xumng123
+#20220813 scjtqs
 PROG=/usr/bin/zerotier-one
 PROGCLI=/usr/bin/zerotier-cli
 PROGIDT=/usr/bin/zerotier-idtool
@@ -38,7 +39,7 @@ start_instance() {
 		#rm -f $config_path/identity.public
 	fi
 
-	add_join $(nvram get zerotier_id)
+	#add_join $(nvram get zerotier_id)
 
 	$PROG $args $config_path >/dev/null 2>&1 &
 		
@@ -48,6 +49,10 @@ start_instance() {
 		$PROGCLI -D$config_path orbit $moonid $moonid
 		logger -t "zerotier" "orbit moonid $moonid ok!"
 	fi
+
+	if [ -n "$(nvram get zerotier_id)" ]; then
+	  $PROGCLI -D$config_path join $(nvram get zerotier_id)
+  fi
 
 
 	if [ -n "$enablemoonserv" ]; then
