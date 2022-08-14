@@ -39,7 +39,7 @@ start_instance() {
 		#rm -f $config_path/identity.public
 	fi
 
-	#add_join $(nvram get zerotier_id)
+	add_join
 
 	$PROG $args $config_path >/dev/null 2>&1 &
 		
@@ -68,7 +68,7 @@ start_instance() {
 }
 
 add_join() {
-		touch $config_path/networks.d/$1.conf
+		touch "$config_path/networks.d/$(nvram get zerotier_id).conf"
 }
 
 
