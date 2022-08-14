@@ -43,7 +43,7 @@ start_instance() {
 
 	$PROG $args $config_path >/dev/null 2>&1 &
 		
-	rules
+
 	
 	if [ -n "$moonid" ]; then
 		$PROGCLI -D$config_path orbit $moonid $moonid
@@ -54,6 +54,7 @@ start_instance() {
 	  $PROGCLI -D$config_path join $(nvram get zerotier_id)
   fi
 
+  rules
 
 	if [ -n "$enablemoonserv" ]; then
 		if [ "$enablemoonserv" -eq "1" ]; then
