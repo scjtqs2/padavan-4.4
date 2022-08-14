@@ -50,9 +50,9 @@ start_instance() {
 		logger -t "zerotier" "orbit moonid $moonid ok!"
 	fi
 
-	if [ -n "$(nvram get zerotier_id)" ]; then
+  if [ -n "$(nvram get zerotier_id)" ]; then
 	  $PROGCLI -D$config_path join $(nvram get zerotier_id)
-        fi
+  fi
 
 
 	if [ -n "$enablemoonserv" ]; then
