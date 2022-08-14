@@ -52,7 +52,7 @@ start_instance() {
 
 	if [ -n "$(nvram get zerotier_id)" ]; then
 	  $PROGCLI -D$config_path join $(nvram get zerotier_id)
-  fi
+        fi
 
 
 	if [ -n "$enablemoonserv" ]; then
